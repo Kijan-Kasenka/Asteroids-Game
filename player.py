@@ -6,7 +6,7 @@ from constants import *
 
 class Player(CircleShape):
     # instance init
-    def __init__(self, x: float, y: float):
+    def __init__(self, x: float, y: float) -> None:
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
 
@@ -20,10 +20,10 @@ class Player(CircleShape):
         return [a, b, c]
 
 
-    def draw(self, screen):
+    def draw(self, screen: pygame.Surface) -> None:
         pygame.draw.polygon(screen, "white", self.triangle(), LINE_WIDTH)
 
-    def rotate(self, dt):
+    def rotate(self, dt: float) -> None:
         self.rotation += (PLAYER_TURN_SPEED * dt)
 
     def update(self, dt: float) -> None:
@@ -38,7 +38,7 @@ class Player(CircleShape):
         if keys[pygame.K_s]:
             self.move(-dt)
 
-    def move(self, dt):
+    def move(self, dt:float) -> None:
         unit_vector = pygame.Vector2(0, 1)
         rotated_vector = unit_vector.rotate(self.rotation)
         moving_vector = rotated_vector * PLAYER_SPEED * dt
